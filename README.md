@@ -4,13 +4,13 @@
 Add the script file in the ```<head>``` section.
 
 ```
-<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctionetEmbedScript'></script>
+<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctionet-embedScript'></script>
 ```
 
 Then add the embedd code wherever you want the widget:
 
 ```
-<script id='auctionetEmbed'>
+<script id='auctionet-embed'>
   auctionet.init({
     companyId: 52,
     locale: 'de'
@@ -54,10 +54,10 @@ textColors: {
   itemId: '#000',
   link: '#252525',
   heading: '#000',
-  priceHeading: '#5d5d5d',
-  priceValue: '#5d5d5d',
-  timeHeading: '#5d5d5d',
-  timeValue: '#5d5d5d'
+  bidOrEstimateText: '#5d5d5d',
+  bidOrEstimateValue: '#5d5d5d',
+  endsAtText: '#5d5d5d',
+  endsAtValue: '#5d5d5d'
 }
 ```
 
@@ -75,7 +75,7 @@ The starting filter.
 ### Fully configured
 
 ```
-<script id='auctionetEmbed'>
+<script id='auctionet-embed'>
   auctionet.init({
     companyId: 1,
     heading: 'Our latest items from Auctionet',
@@ -87,10 +87,10 @@ The starting filter.
       itemId: '#000',
       link: '#252525',
       heading: '#000',
-      priceHeading: '#5d5d5d',
-      priceValue: '#5d5d5d',
-      timeHeading: '#5d5d5d',
-      timeValue: '#5d5d5d'
+      bidOrEstimateText: '#5d5d5d',
+      bidOrEstimateValue: '#5d5d5d',
+      endsAtText: '#5d5d5d',
+      endsAtValue: '#5d5d5d'
     },
     locale: 'en',
     howManyItems: 5,

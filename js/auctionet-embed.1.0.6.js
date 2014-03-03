@@ -18,7 +18,7 @@
       time: 'Time left',
       bids: 'Bids',
       bid: 'Bid',
-      no_objects_found: 'No items were found',
+      noObjectsFound: 'No items were found',
       heading: 'Ending soon',
       popularItems: 'Recently bid on',
       lastestItems: 'Recently added',
@@ -34,7 +34,7 @@
       time: 'Restzeit',
       bids: 'Gebote',
       bid: 'Gebot',
-      no_objects_found: 'Keine Artikel wurde gefunden',
+      noObjectsFound: 'Keine Artikel wurde gefunden',
       heading: 'Bald endend',
       popularItems: 'Beliebte Artikel',
       lastestItems: 'Neueste Artikel',
@@ -50,7 +50,7 @@
       time: 'Tid kvar',
       bids: 'Bud',
       bid: 'Bud',
-      no_objects_found: 'Inga föremål hittades',
+      noObjectsFound: 'Inga föremål hittades',
       heading: 'Slutar snart',
       popularItems: 'Senaste bud',
       lastestItems: 'Senast inkommet',
@@ -71,10 +71,10 @@
         itemId: '#000',
         link: '#252525',
         heading: '#000',
-        priceHeading: '#5d5d5d',
-        priceValue: '#5d5d5d',
-        timeHeading: '#5d5d5d',
-        timeValue: '#5d5d5d'
+        bidOrEstimateText: '#5d5d5d',
+        bidOrEstimateValue: '#5d5d5d',
+        endsInText: '#5d5d5d',
+        endsAtValue: '#5d5d5d'
       },
       locale: 'sv',
       howManyItems: 5,
@@ -96,7 +96,7 @@
           nope: '//twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js',
           complete: function () {
             jQuery(function() {
-              scriptTag = jQuery("#auctionetEmbedScript"),
+              scriptTag = jQuery("#auctionet-embedScript"),
               host = scriptTag.data('host');
               
               auctionet.embed(options);
@@ -117,26 +117,23 @@
       this.setHeading();
 
       var data = {
-        url: this.buildLinkUrl(),
+        url: this.linkUrl(),
         textColors: this.settings.textColors,
         text: locales[this.settings.locale],
         heading: this.settings.heading,
         host: host,
-        linkUrl: this.buildLinkUrl()
+        linkUrl: this.linkUrl()
       }
 
-      // TODO: Precompile with hulk.
-      var template = '<div id="auctionetWrapper"><div id="auctionetHeader"><h2 style="color: {{textColors.heading}}">{{heading}}</h2><a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" /></a></div><ul id="external-objects"></ul><div id="auctionetButtons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
-      var compiledTemplate = Hogan.compile(template);
-      var renderedTemplate = compiledTemplate.render(data);
+      var renderedTemplate = this.wrapperTemplate().render(data);
 
-      $('#auctionetEmbed').after(renderedTemplate);
+      $('#auctionet-embed').after(renderedTemplate);
 
-      $('#auctionetButtons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
-      $("#auctionetButtons a[rel=" + this.settings.initialFilter + "]").trigger('click');
-      
-      this.externalObjects = $('#external-objects')
-      this.loadExternalObjects(this.settings.initialFilter)
+      $('#auctionet-buttons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
+      $("#auctionet-buttons a[rel=" + this.settings.initialFilter + "]").trigger('click');
+
+      this.externalItems = $('#external-items');
+      this.loadExternalItems(this.settings.initialFilter);
     },
 
     setHeading : function() {
@@ -149,8 +146,8 @@
 
     timeDifference : function (date1, date2) {
       var one_day = 1000 * 60 * 60 * 24,
-          one_hour = 1000 * 60 * 60,
-          one_minute = 1000 * 60,
+            one_hour = 1000 * 60 * 60,
+            one_minute = 1000 * 60,
 
       date1_ms = date1.getTime(),
       date2_ms = date2.getTime(),
@@ -170,75 +167,91 @@
       return diff;
     },
 
-    drawObject : function (object) {
+    drawItem : function (item) {
       var data = {
-        imageUrl: object.images[0].thumb,
-        id: object.id,
-        title: object.title.length > 36 ? object.title.substring(0, 36) + '...' : object.title,
-        url: object.url,
-        price: this.priceValue(object),
-        endsIn: this.timeDifference(new Date(), new Date(object.ends_at * 1000)),
-        priceText: this.priceText(object),
-        timeText: locales[this.settings.locale].time,
+        id: item.id,
+        title: this.truncateItemTitle(item.title),
+        itemLinkUrl: item.url,
+        imageUrl: item.images[0].thumb,
+        bidOrEstimateText: this.bidOrEstimateText(item),
+        bidOrEstimateValue: this.bidOrEstimateValue(item),
+        endsInText: locales[this.settings.locale].time,
+        endsInValue: this.timeDifference(new Date(), new Date(item.ends_at * 1000)),
         textColors: this.settings.textColors,
         backgroundColors: this.settings.backgroundColors
       }
 
-      // TODO: Precompile with hulk.
-      var template = '<li><div class="object-image" style="background-color: {{backgroundColors.image}}"><a href="{{url}}"><img src="{{imageUrl}}" alt="{{title}}" /></a></div><a class="object-link" href="{{url}}" style="color: {{textColors.link}}"><strong style="color: {{textColors.itemId}}">{{id}}.</strong> {{title}}</a><dl style="background-color: {{backgroundColors.meta}}"><dt class="border" style="color: {{textColors.priceHeading}}">{{priceText}}</dt><dd class="border" style="color: {{textColors.priceValue}}">{{price}}</dd><dt style="color: {{textColors.timeHeading}}">{{timeText}}</dt><dd style="color: {{textColors.timeValue}}">{{endsIn}}</dd></dl></li>';
+      return this.itemTemplate().render(data);
+    },
+
+    itemTemplate : function () {
+      var template = '<li><div class="object-image" style="background-color: {{backgroundColors.image}}"><a href="{{itemLinkUrl}}"><img src="{{imageUrl}}" alt="{{title}}" /></a></div><a class="object-link" href="{{itemLinkUrl}}" style="color: {{textColors.link}}"><strong style="color: {{textColors.itemId}}">{{id}}.</strong> {{title}}</a><dl style="background-color: {{backgroundColors.meta}}"><dt class="border" style="color: {{textColors.bidOrEstimateText}}">{{bidOrEstimateText}}</dt><dd class="border" style="color: {{textColors.bidOrEstimateValue}}">{{bidOrEstimateValue}}</dd><dt style="color: {{textColors.endsInText}}">{{endsInText}}</dt><dd style="color: {{textColors.endsAtValue}}">{{endsInValue}}</dd></dl></li>';
       var compiledTemplate = Hogan.compile(template);
-      return compiledTemplate.render(data);
+      return compiledTemplate;
     },
 
-    priceValue : function(object) {
+    wrapperTemplate : function () {
+      var template = '<div id="auctionet-wrapper"><div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading}}</h2><a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" width="300" height="42" /></a></div><ul id="external-items"></ul><div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
+      var compiledTemplate = Hogan.compile(template);
+      return compiledTemplate;
+    },
+
+    truncateItemTitle : function (title) {
+      return title.length > 36 ? title.substring(0, 36) + '...' : title
+    },
+
+    bidOrEstimateValue : function(object) {
       if (object.bids.length > 0) {
-        return object.bids[0].amount + ' ' + object.currency
+        return object.bids[0].amount + ' ' + object.currency;
       } else {
-        return object.estimate + ' ' + object.currency
+        return object.estimate + ' ' + object.currency;
       }
     },
 
-    priceText : function(object) {
-      if (object.bids.length > 0) {
-        return object.bids.length + ' ' + (object.bids.length > 1 ? locales[this.settings.locale].bids : locales[this.settings.locale].bid)
+    bidOrEstimateText : function(object) {
+      var bidAmount = object.bids.length;
+      var pluralizedBids = bidAmount > 1 ? locales[this.settings.locale].bids : locales[this.settings.locale].bid;
+
+      if (bidAmount > 0) {
+        return bidAmount + ' ' + pluralizedBids;
       } else {
-        return locales[this.settings.locale].price
+        return locales[this.settings.locale].price;
       }
     },
 
-    displayNoObjectsFound : function (response) {
-      var htmlString = '<li><h4>' + locales[this.settings.locale].no_objects_found + '</h4></li>';
-      this.externalObjects.html(htmlString);
+    displayNoItemsFound : function (response) {
+      var htmlString = '<li><h4>' + locales[this.settings.locale].noObjectsFound + '</h4></li>';
+      this.externalItems.html(htmlString);
     },
 
-    displayExternalObjects : function (items) {
+    displayExternalItems : function (items) {
       var htmlString = ''
       _.each(items, _.bind(function(element, index, list) {
-        htmlString += this.drawObject(items[index]);
+        htmlString += this.drawItem(items[index]);
       }, this));
-      this.externalObjects.html(htmlString);
+      this.externalItems.html(htmlString);
     },
 
-    loadedObjects : function (responseObject) {
+    loadedItems : function (responseObject) {
       if (responseObject && responseObject.items) {
-        this.displayExternalObjects(responseObject.items);
+        this.displayExternalItems(responseObject.items);
       }
     },
 
-    buildUrl: function (filter) {
+    apiUrl: function (filter) {
       return 'https://auctionet.com/api/v2/items.json?locale=' + this.settings.locale + '&company_id=' + this.settings.companyId + '&order=' + filter + '&per_page=' + this.settings.howManyItems;
     },
 
-    buildLinkUrl: function () {
+    linkUrl: function () {
       return 'https://auctionet.com/' + this.settings.locale + '/search?company_id=' + this.settings.companyId;
     },
 
-    loadExternalObjects : function (filter) {
+    loadExternalItems : function (filter) {
       $.ajax({
-        url: this.buildUrl(filter),
+        url: this.apiUrl(filter),
         dataType: 'jsonp',
-        success: _.bind(this.loadedObjects, this),
-        error: this.displayNoObjectsFound
+        success: _.bind(this.loadedItems, this),
+        error: this.displayNoItemsFound
       });
     },
 
@@ -251,7 +264,7 @@
       self.addClass('active');
       self.siblings(':not(.all)').removeClass('active');
 
-      this.loadExternalObjects(filter);
+      this.loadExternalItems(filter);
     },
   };
-}(window));
+} (window) );

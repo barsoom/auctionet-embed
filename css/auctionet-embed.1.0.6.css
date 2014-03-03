@@ -1,28 +1,27 @@
-div#auctionetWrapper {
+div#auctionet-wrapper {
   padding: 15px 1.5%;
   font-family: "Open Sans", sans-serif;
 }
 
-div#auctionetWrapper #auctionetHeader {
+div#auctionet-wrapper #auctionet-header {
   overflow: hidden;
   padding: 0 1.5%;
 }
 
-div#auctionetWrapper #auctionetHeader h2 {
+div#auctionet-wrapper #auctionet-header h2 {
   margin: 0;
   padding: .55em 0 0 0;
   float: left;
   font-size: 16px;
 }
 
-div#auctionetWrapper #auctionetHeader img {
+div#auctionet-wrapper #auctionet-header img {
   width: 300px;
   height: auto;
   float: right;
-  float: right;
 }
 
-div#auctionetWrapper #auctionetButtons {
+div#auctionet-wrapper #auctionet-buttons {
   overflow: hidden;
   margin: 0 1.5%;
   padding-bottom: 10px;
@@ -30,7 +29,7 @@ div#auctionetWrapper #auctionetButtons {
   border-bottom: 1px solid #f5f5f5;
 }
 
-div#auctionetWrapper #auctionetButtons a, div#auctionetWrapper #auctionetButtons a:active, div#auctionetWrapper #auctionetButtons a:visited {
+div#auctionet-wrapper #auctionet-buttons a, div#auctionet-wrapper #auctionet-buttons a:active, div#auctionet-wrapper #auctionet-buttons a:visited {
   font-size: 11px;
   text-transform: uppercase;
   color: #fc2c7f;
@@ -39,29 +38,29 @@ div#auctionetWrapper #auctionetButtons a, div#auctionetWrapper #auctionetButtons
   text-decoration: none;
 }
 
-div#auctionetWrapper #auctionetButtons a:hover, div#auctionetWrapper #auctionetButtons a.active {
+div#auctionet-wrapper #auctionet-buttons a:hover, div#auctionet-wrapper #auctionet-buttons a.active {
   text-decoration: underline;
 }
 
-div#auctionetWrapper #auctionetButtons .button-divider {
+div#auctionet-wrapper #auctionet-buttons .button-divider {
   margin-left: 10px;
   color: #888;
 }
 
-div#auctionetWrapper ul {
+div#auctionet-wrapper ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-div#auctionetWrapper li {
+div#auctionet-wrapper li {
   float: left;
   width: 17%;
   padding: 1.5%;
   font-size: 12px;
 }
 
-div#auctionetWrapper .object-image {
+div#auctionet-wrapper .object-image {
   background: url('../img/item_bg.png');
   height: 160px;
   width: 100%;
@@ -69,23 +68,23 @@ div#auctionetWrapper .object-image {
   display: table;
 }
 
-div#auctionetWrapper .object-image img {
+div#auctionet-wrapper .object-image img {
   max-width: 100%;
   height: auto;
 }
 
-div#auctionetWrapper .object-image a {
+div#auctionet-wrapper .object-image a {
   display: table-cell;
   line-height: 0;
   vertical-align: middle;
 }
 
 
-div#auctionetWrapper #external-objects {
+div#auctionet-wrapper #external-items {
   overflow: hidden;
 }
 
-div#auctionetWrapper #external-objects .object-link, div#auctionetWrapper #external-objects .object-link:active, div#auctionetWrapper #external-objects .object-link:visited {
+div#auctionet-wrapper #external-items .object-link, div#auctionet-wrapper #external-items .object-link:active, div#auctionet-wrapper #external-items .object-link:visited {
   display: block;
   height: 60px;
   padding: 8px 0 5px 0;
@@ -94,12 +93,12 @@ div#auctionetWrapper #external-objects .object-link, div#auctionetWrapper #exter
   text-decoration: none;
 }
 
-div#auctionetWrapper #external-objects .object-link:hover {
+div#auctionet-wrapper #external-items .object-link:hover {
   text-decoration: underline;
   color: grey;  
 }
 
-div#auctionetWrapper #external-objects dl {
+div#auctionet-wrapper #external-items dl {
   margin-top: 3%;
   margin-bottom: 0;
   padding: 4% 6%;
@@ -107,7 +106,7 @@ div#auctionetWrapper #external-objects dl {
   font-size: 12px;
 }
 
-div#auctionetWrapper #external-objects dt {
+div#auctionet-wrapper #external-items dt {
   float: left;
   width: 52%;
   min-width: 58px;
@@ -115,7 +114,7 @@ div#auctionetWrapper #external-objects dt {
   font-weight: normal;
 }
 
-div#auctionetWrapper #external-objects dd {
+div#auctionet-wrapper #external-items dd {
   float: left;
   width: 48%;
   margin: 0;
@@ -123,57 +122,57 @@ div#auctionetWrapper #external-objects dd {
   font-weight: bold;
 }
 
-div#auctionetWrapper #external-objects .border {
+div#auctionet-wrapper #external-items .border {
   padding-bottom: 2px;
   margin-bottom: 5px;
 }
 
 @media all and (max-width: 810px) and (min-width: 500px) {
-  div#auctionetWrapper #auctionetHeader h2 {
+  div#auctionet-wrapper #auctionet-header h2 {
     padding: 0;
   }
 
-  div#auctionetWrapper #auctionetHeader img {
+  div#auctionet-wrapper #auctionet-header img {
     width: 200px;
     height: auto;
   }
 
-  div#auctionetWrapper li {
+  div#auctionet-wrapper li {
     width: 30%;
     padding: 1.665%;
   }  
 }
 
 @media all and (max-width: 500px) {
-  div#auctionetWrapper #auctionetHeader {
+  div#auctionet-wrapper #auctionet-header {
     margin-bottom: 1em;
     padding-bottom: 1em;
     border-bottom: 1px solid #f5f5f5;
     text-align: center;
   }
 
-  div#auctionetWrapper #auctionetHeader h2 {
+  div#auctionet-wrapper #auctionet-header h2 {
     margin-bottom: 1em;
     float: none;
   }
 
-  div#auctionetWrapper #auctionetHeader img {
+  div#auctionet-wrapper #auctionet-header img {
     float: none;
     width: 300px;
   }
 
-  div#auctionetWrapper li {
+  div#auctionet-wrapper li {
     float: none;
     width: 97%;
     padding: 1.5%;
     margin-bottom: 1em;
   }
 
-  div#auctionetWrapper #external-objects .object-link, div#auctionetWrapper #external-objects .object-link:active, div#auctionetWrapper #external-objects .object-link:visited {
+  div#auctionet-wrapper #external-items .object-link, div#auctionet-wrapper #external-items .object-link:active, div#auctionet-wrapper #external-items .object-link:visited {
     height: auto;
   }
 
-  div#auctionetWrapper #auctionetButtons a, div#auctionetWrapper #auctionetButtons .button-divider {
+  div#auctionet-wrapper #auctionet-buttons a, div#auctionet-wrapper #auctionet-buttons .button-divider {
     margin-left: 5px;
   }
 }
