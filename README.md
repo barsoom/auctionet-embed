@@ -4,14 +4,14 @@
 Add the script file in the ```<head>``` section.
 
 ```
-<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctioNetEmbedScript'></script>
+<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctionetEmbedScript'></script>
 ```
 
 Then add the embedd code wherever you want the widget:
 
 ```
-<script id='auctioNetEmbed'>
-  auctioNet.init({
+<script id='auctionetEmbed'>
+  auctionet.init({
     companyId: 52,
     locale: 'de'
   });
@@ -75,8 +75,8 @@ The starting filter.
 ### Fully configured
 
 ```
-<script id='auctioNetEmbed'>
-  auctioNet.init({
+<script id='auctionetEmbed'>
+  auctionet.init({
     companyId: 1,
     heading: 'Our latest items from Auctionet',
     backgroundColors: {

@@ -59,7 +59,7 @@
     }
   }
 
-  window.auctioNet = {
+  window.auctionet = {
     defaults : {
       companyId: null,
       heading: null,
@@ -82,7 +82,7 @@
     },
 
     init : function (options) {
-      var auctioNet = this;
+      var auctionet = this;
 
       // TODO: Implement DOM-ready to catch later loaded jQuery.
       yepnope([{
@@ -96,10 +96,10 @@
           nope: '//twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js',
           complete: function () {
             jQuery(function() {
-              scriptTag = jQuery("#auctioNetEmbedScript"),
+              scriptTag = jQuery("#auctionetEmbedScript"),
               host = scriptTag.data('host');
               
-              auctioNet.embed(options);
+              auctionet.embed(options);
 
               yepnope([{
                 load: [host + '/css/auctionet-embed.1.0.6.min.css', '//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css'],
@@ -126,14 +126,14 @@
       }
 
       // TODO: Precompile with hulk.
-      var template = '<div id="auctioNetWrapper"><div id="auctioNetHeader"><h2 style="color: {{textColors.heading}}">{{heading}}</h2><a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" /></a></div><ul id="external-objects"></ul><div id="auctioNetButtons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
+      var template = '<div id="auctionetWrapper"><div id="auctionetHeader"><h2 style="color: {{textColors.heading}}">{{heading}}</h2><a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" /></a></div><ul id="external-objects"></ul><div id="auctionetButtons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
       var compiledTemplate = Hogan.compile(template);
       var renderedTemplate = compiledTemplate.render(data);
 
-      $('#auctioNetEmbed').after(renderedTemplate);
+      $('#auctionetEmbed').after(renderedTemplate);
 
-      $('#auctioNetButtons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
-      $("#auctioNetButtons a[rel=" + this.settings.initialFilter + "]").trigger('click');
+      $('#auctionetButtons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
+      $("#auctionetButtons a[rel=" + this.settings.initialFilter + "]").trigger('click');
       
       this.externalObjects = $('#external-objects')
       this.loadExternalObjects(this.settings.initialFilter)
