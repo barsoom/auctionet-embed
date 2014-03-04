@@ -6,7 +6,10 @@
   "use strict";
 
   var scriptTag = '',
-        host = '';
+        host = '',
+        ONE_DAY = 1000 * 60 * 60 * 24,
+        ONE_HOUR = 1000 * 60 * 60,
+        ONE_MINUTE = 1000 * 60;
 
   var locales = {
     en: {
@@ -57,7 +60,7 @@
       endingSoon: 'Slutar snart',
       seeAll: 'Se alla'
     }
-  }
+  };
 
   window.auctionet = {
     defaults : {
@@ -87,22 +90,22 @@
       // TODO: Implement DOM-ready to catch later loaded jQuery.
       yepnope([{
           test: window.jQuery,
-          nope: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js',
+          nope: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js'
         }, {
           test: window._,
-          nope: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js',
+          nope: '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js'
         }, {
           test: window.Hogan,
           nope: '//twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js',
           complete: function () {
             jQuery(function() {
-              scriptTag = jQuery("#auctionet-embedScript"),
+              scriptTag = jQuery("#auctionet-embed-script");
               host = scriptTag.data('host');
               
               auctionet.embed(options);
 
               yepnope([{
-                load: [host + '/css/auctionet-embed.1.0.6.min.css', '//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css'],
+                load: [host + '/css/auctionet-embed.1.0.6.min.css', '//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css']
               }]);
             });
           }
@@ -114,21 +117,20 @@
             $ = jQuery;
             
       this.settings = _.defaults(options, this.defaults);
+      this.setLocale();
       this.setHeading();
 
       var data = {
-        url: this.linkUrl(),
         textColors: this.settings.textColors,
-        text: locales[this.settings.locale],
+        text: this.text,
         heading: this.settings.heading,
         host: host,
         linkUrl: this.linkUrl()
-      }
+      };
 
       var renderedTemplate = this.wrapperTemplate().render(data);
 
       $('#auctionet-embed').after(renderedTemplate);
-
       $('#auctionet-buttons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
       $("#auctionet-buttons a[rel=" + this.settings.initialFilter + "]").trigger('click');
 
@@ -136,35 +138,48 @@
       this.loadExternalItems(this.settings.initialFilter);
     },
 
+    setLocale : function() {
+      this.text = locales[this.settings.locale];
+    },
+
     setHeading : function() {
       if (this.settings.heading === null) {
-        this.settings.heading = locales[this.settings.locale].heading
+        this.settings.heading = this.text.heading;
       } else {
-        return
+        return;
       }
     },
 
     timeDifference : function (date1, date2) {
-      var one_day = 1000 * 60 * 60 * 24,
-            one_hour = 1000 * 60 * 60,
-            one_minute = 1000 * 60,
+      var  date1_ms = date1.getTime(),
+            date2_ms = date2.getTime(),
+            difference_ms = Math.abs(date1_ms - date2_ms),
+            dayAmount = difference_ms/ONE_DAY,
+            diff = '';
 
-      date1_ms = date1.getTime(),
-      date2_ms = date2.getTime(),
-      difference_ms = Math.abs(date1_ms - date2_ms),
-      diff = '';
-
-      if (difference_ms/one_day < 1.0) {
-        if (difference_ms > one_hour) {
-          diff = Math.round(difference_ms/one_hour) + ' ' + locales[this.settings.locale].hour;
+      if (dayAmount < 1.0) {
+        if (difference_ms > ONE_HOUR) {
+          diff = Math.round(difference_ms/ONE_HOUR) + ' ' + this.text.hour;
         } else {
-          diff = Math.round(difference_ms/one_minute) + locales[this.settings.locale].min;
+          diff = Math.round(difference_ms/ONE_MINUTE) + this.text.min;
         }
       } else {
-        diff = Math.round(difference_ms/one_day) + (Math.round(difference_ms/one_day) === 1 ? ' ' + locales[this.settings.locale].day : ' ' + locales[this.settings.locale].days);
+        diff = this.pluralizeDays(dayAmount);
       }
 
       return diff;
+    },
+
+    pluralizeDays : function (dayAmount) {
+      var text = '',
+            roundedDays = Math.round(dayAmount);
+      
+      if (roundedDays === 1) {
+        text = roundedDays + ' ' + this.text.day;
+      } else {
+        text = roundedDays + ' ' + this.text.days;
+      }
+      return text;
     },
 
     drawItem : function (item) {
@@ -175,11 +190,11 @@
         imageUrl: item.images[0].thumb,
         bidOrEstimateText: this.bidOrEstimateText(item),
         bidOrEstimateValue: this.bidOrEstimateValue(item),
-        endsInText: locales[this.settings.locale].time,
+        endsInText: this.text.time,
         endsInValue: this.timeDifference(new Date(), new Date(item.ends_at * 1000)),
         textColors: this.settings.textColors,
         backgroundColors: this.settings.backgroundColors
-      }
+      };
 
       return this.itemTemplate().render(data);
     },
@@ -197,7 +212,7 @@
     },
 
     truncateItemTitle : function (title) {
-      return title.length > 36 ? title.substring(0, 36) + '...' : title
+      return title.length > 36 ? title.substring(0, 36) + '...' : title;
     },
 
     bidOrEstimateValue : function(object) {
@@ -210,22 +225,22 @@
 
     bidOrEstimateText : function(object) {
       var bidAmount = object.bids.length;
-      var pluralizedBids = bidAmount > 1 ? locales[this.settings.locale].bids : locales[this.settings.locale].bid;
+      var pluralizedBids = bidAmount > 1 ? this.text.bids : this.text.bid;
 
       if (bidAmount > 0) {
         return bidAmount + ' ' + pluralizedBids;
       } else {
-        return locales[this.settings.locale].price;
+        return this.text.price;
       }
     },
 
     displayNoItemsFound : function (response) {
-      var htmlString = '<li><h4>' + locales[this.settings.locale].noObjectsFound + '</h4></li>';
+      var htmlString = '<li><h4>' + this.text.noObjectsFound + '</h4></li>';
       this.externalItems.html(htmlString);
     },
 
     displayExternalItems : function (items) {
-      var htmlString = ''
+      var htmlString = '';
       _.each(items, _.bind(function(element, index, list) {
         htmlString += this.drawItem(items[index]);
       }, this));
@@ -265,6 +280,6 @@
       self.siblings(':not(.all)').removeClass('active');
 
       this.loadExternalItems(filter);
-    },
+    }
   };
 } (window) );

@@ -4,7 +4,7 @@
 Add the script file in the ```<head>``` section.
 
 ```
-<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctionet-embedScript'></script>
+<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.1.0.6.min.js" id='auctionet-embed-script'></script>
 ```
 
 Then add the embedd code wherever you want the widget:
