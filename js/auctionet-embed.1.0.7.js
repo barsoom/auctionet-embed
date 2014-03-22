@@ -159,7 +159,7 @@
 
       if (dayAmount < 1.0) {
         if (difference_ms > ONE_HOUR) {
-          diff = Math.round(difference_ms/ONE_HOUR) + ' ' + this.text.hour;
+          diff = Math.round(difference_ms/ONE_HOUR) + ' ' + this.text.hours;
         } else {
           diff = Math.round(difference_ms/ONE_MINUTE) + this.text.min;
         }
