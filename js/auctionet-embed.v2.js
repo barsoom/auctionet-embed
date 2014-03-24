@@ -105,7 +105,7 @@
               auctionet.embed(options);
 
               yepnope([{
-                load: [host + '/css/auctionet-embed.1.0.7.min.css', '//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css']
+                load: [host + '/css/auctionet-embed.v2.css', '//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css']
               }]);
             });
           }
