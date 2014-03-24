@@ -4,16 +4,16 @@
 Add the script file in the ```<head>``` section.
 
 ```
-<script data-host='//auctionet.com/embed' src="//auctionet.com/embed/js/auctionet-embed.v2.js" id='auctionet-embed-script'></script>
+<script data-host="//auctionet.com/embed" src="//auctionet.com/embed/js/auctionet-embed.v2.js" id="auctionet-embed-script"></script>
 ```
 
-Then add the embedd code wherever you want the widget:
+Then add the embed code wherever you want the widget:
 
 ```
-<script id='auctionet-embed'>
+<script id="auctionet-embed">
   auctionet.init({
     companyId: 52,
-    locale: 'de'
+    locale: "de"
   });
 </script>
 ```
