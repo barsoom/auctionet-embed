@@ -38,10 +38,10 @@
       bids: 'Gebote',
       bid: 'Gebot',
       noObjectsFound: 'Keine Artikel wurde gefunden',
-      heading: 'Bald endend',
+      heading: 'Bald endende Auktionen',
       popularItems: 'Beliebte Artikel',
       lastestItems: 'Neueste Artikel',
-      endingSoon: 'Bald endend',
+      endingSoon: 'Bald endende Auktionen',
       seeAll: 'Alle ansehen'
     },
     sv: {
