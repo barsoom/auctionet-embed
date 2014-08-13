@@ -113,8 +113,7 @@
     },  
 
     embed : function(options) {
-      var document = window.document,
-            $ = jQuery;
+      var document = window.document
             
       this.settings = _.defaults(options, this.defaults);
       this.setLocale();
@@ -130,11 +129,11 @@
 
       var renderedTemplate = this.wrapperTemplate().render(data);
 
-      $('#auctionet-embed').after(renderedTemplate);
-      $('#auctionet-buttons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
-      $("#auctionet-buttons a[rel=" + this.settings.initialFilter + "]").trigger('click');
+      jQuery('#auctionet-embed').after(renderedTemplate);
+      jQuery('#auctionet-buttons a:not(.all)').click(_.bind(this.onClickObjectButton, this));
+      jQuery("#auctionet-buttons a[rel=" + this.settings.initialFilter + "]").trigger('click');
 
-      this.externalItems = $('#external-items');
+      this.externalItems = jQuery('#external-items');
       this.loadExternalItems(this.settings.initialFilter);
     },
 
@@ -262,7 +261,7 @@
     },
 
     loadExternalItems : function (filter) {
-      $.ajax({
+      jQuery.ajax({
         url: this.apiUrl(filter),
         dataType: 'jsonp',
         success: _.bind(this.loadedItems, this),
@@ -273,7 +272,7 @@
     onClickObjectButton : function (e) {
       e.preventDefault();
 
-      var self = $(e.target),
+      var self = jQuery(e.target),
            filter = self.attr('rel');
 
       self.addClass('active');
