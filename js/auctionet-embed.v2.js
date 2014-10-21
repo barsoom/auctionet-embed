@@ -66,6 +66,7 @@
     defaults : {
       companyId: null,
       heading: null,
+      showLogo: true,
       backgroundColors: {
         image: '#ececec',
         meta: '#ececec'
@@ -100,8 +101,8 @@
           complete: function () {
             jQuery(function() {
               scriptTag = jQuery("#auctionet-embed-script");
-              host = scriptTag.data('host');
-              
+              host = scriptTag.attr('data-host');
+
               auctionet.embed(options);
 
               yepnope([{
@@ -110,11 +111,11 @@
             });
           }
         }]);
-    },  
+    },
 
     embed : function(options) {
       var document = window.document
-            
+
       this.settings = _.defaults(options, this.defaults);
       this.setLocale();
       this.setHeading();
@@ -205,7 +206,12 @@
     },
 
     wrapperTemplate : function () {
-      var template = '<div id="auctionet-wrapper"><div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading}}</h2><a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" width="300" height="42" /></a></div><ul id="external-items"></ul><div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
+      var logoTemplate = "";
+      if(this.settings.showLogo) {
+        logoTemplate = '<a href="{{linkUrl}}"><img src="{{host}}/img/logo.png" width="300" height="42" /></a>';
+      }
+
+      var template = '<div id="auctionet-wrapper"><div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading}}</h2>' + logoTemplate + '</div><ul id="external-items"></ul><div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{url}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
       var compiledTemplate = Hogan.compile(template);
       return compiledTemplate;
     },
