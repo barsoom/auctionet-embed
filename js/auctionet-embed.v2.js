@@ -111,11 +111,11 @@
             });
           }
         }]);
-    },  
+    },
 
     embed : function(options) {
       var document = window.document
-            
+
       this.settings = _.defaults(options, this.defaults);
       this.setLocale();
       this.setHeading();
@@ -173,7 +173,7 @@
     pluralizeDays : function (dayAmount) {
       var text = '',
             roundedDays = Math.round(dayAmount);
-      
+
       if (roundedDays === 1) {
         text = roundedDays + ' ' + this.text.day;
       } else {
