@@ -101,6 +101,10 @@
           complete: function () {
             jQuery(function() {
               scriptTag = jQuery("#auctionet-embed-script");
+              // Make our embeded code work with previous versions of JQuery
+              //
+              // The .data() method was introduced in JQuery 1.4.3, read more about it:
+              // http://blog.jquery.com/2010/10/16/jquery-143-released/
               host = scriptTag.attr('data-host');
 
               auctionet.embed(options);
