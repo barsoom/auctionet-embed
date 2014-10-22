@@ -100,8 +100,8 @@
           complete: function () {
             jQuery(function() {
               scriptTag = jQuery("#auctionet-embed-script");
-              host = scriptTag.data('host');
-              
+              host = scriptTag.attr('data-host');
+
               auctionet.embed(options);
 
               yepnope([{
