@@ -98,3 +98,20 @@ The starting filter.
   });
 </script>
 ```
+
+### Local development server
+
+    bundle
+    rackup
+
+    # or if you want to bind it to a specific ip
+    #rackup --host 192.168.50.51
+
+Then visit [http://localhost:9292/index.html](http://localhost:9292/index.html).
+
+### Running smoke tests
+
+You can run a raketask that checks if the page can be shown including items from the API.
+
+    bundle
+    rake
