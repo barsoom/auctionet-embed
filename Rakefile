@@ -2,6 +2,11 @@ require "capybara"
 require "capybara/poltergeist"
 require "rack"
 
+task :default do
+  WebServer.new.run
+  Test.new.run
+end
+
 WEB_SERVER_PORT = 12345
 
 class Test
@@ -85,9 +90,4 @@ class WebServer
 
     $stderr = old
   end
-end
-
-task :default do
-  WebServer.new.run
-  Test.new.run
 end
