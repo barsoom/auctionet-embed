@@ -46,7 +46,7 @@ backgroundColors: {
 * ```image``` - The background color behind the image.
 * ```meta``` - The background color behind the metadata.
 
-### textColors (optional) 
+### textColors (optional)
 These options are passed a JSON object :
 
 ```
@@ -61,7 +61,7 @@ textColors: {
 }
 ```
 
-### howManyItems (optional) 
+### howManyItems (optional)
 How many items should be displayed? Incremented in steps 5, 10, 15 and so on.
 
 ### initialFilter (optional) (default: bid_on)
