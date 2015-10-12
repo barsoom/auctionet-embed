@@ -20,7 +20,7 @@ class Test
     if page.has_css?("a.object-link")
       puts "Success. The page loaded and displayed items from the API."
     else
-      puts "Failure!"
+      puts "Failure! No published items were found!"
       puts
       puts "The page was displayed as:"
       puts page.body
