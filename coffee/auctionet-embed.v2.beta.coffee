@@ -237,7 +237,7 @@ do (window) ->
       if @settings.companyId
         url += "company_id=" + @settings.companyId
       if @settings.query
-        if url.endsWith("?")
+        if url[-1] == "?"
           url += "q=" + @settings.query
         else
           url += "&q=" + @settings.query

@@ -259,7 +259,7 @@
           url += "company_id=" + this.settings.companyId;
         }
         if (this.settings.query) {
-          if (url.endsWith("?")) {
+          if (url[-1] === "?") {
             url += "q=" + this.settings.query;
           } else {
             url += "&q=" + this.settings.query;
