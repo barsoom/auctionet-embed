@@ -1,8 +1,18 @@
 require "capybara"
+require "capybara/dsl"
 require "capybara/poltergeist"
 require "rack"
 
 task :default do
+  if ENV["DEVBOX"]
+    system "foreman start --procfile=Procfile.dev"
+  else
+    WebServer.new.run
+    Test.new.run
+  end
+end
+
+task :test do
   WebServer.new.run
   Test.new.run
 end
