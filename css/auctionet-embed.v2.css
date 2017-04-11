@@ -58,6 +58,7 @@ div#auctionet-wrapper li {
   width: 17%;
   padding: 1.5%;
   font-size: 12px;
+  min-width: 160px;
 }
 
 div#auctionet-wrapper .object-image {
