@@ -87,15 +87,15 @@ do (window) ->
       yepnope [
         {
           test: window.jQuery
-          nope: "//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+          nope: "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
         },
         {
           test: window._
-          nope: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"
+          nope: "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"
         },
         {
           test: window.Hogan
-          nope: "//twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js"
+          nope: "https://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js"
           complete: ->
             jQuery ->
               scriptTag = jQuery("#auctionet-embed-script")
@@ -107,7 +107,7 @@ do (window) ->
               auctionet.embed options
               yepnope [ { load: [
                 host + "/css/auctionet-embed.v2.css"
-                "//fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css"
+                "https://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css"
               ] } ]
         },
       ]
