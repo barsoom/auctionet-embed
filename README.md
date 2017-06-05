@@ -15,6 +15,8 @@ Add the script file in the ```<head>``` section.
 <script data-host="https://auctionet.com/embed" src="https://auctionet.com/embed/js/auctionet-embed.v2.js" id="auctionet-embed-script"></script>
 ```
 
+For WordPress, you may want a plugin like <https://wordpress.org/plugins/scripts-n-styles/>.
+
 Then add the embed code wherever you want the widget:
 
 ```
