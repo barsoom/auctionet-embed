@@ -1,12 +1,19 @@
 # Auctionet Embed
 
-## Versions
+## Versions and releasing the code
 
 Edit `js/auctionet-embed.v2.js` to edit the one that most auction houses use. Some have copied it rather than hotlinking it (e.g. <http://www.goteborgsauktionsverk.se/auktioner/>, <https://www.kolonn.se/>).
 
 Or edit `coffee/auctionet-embed.v2.beta.coffee` while running `bundle exec guard` to ensure it's converted to JS. That's a version with some additional features that Tomas started on.
 
 Perhaps we should introduce a v3 at some point…
+
+Once you have a `.js` file, you need to copy it to Auctionet and deploy it through there:
+
+```
+# Assuming you have Auctionet core mounted at ~/auctionet.
+cp js/* ~/auctionet/public/embed/js/
+```
 
 ## Quick start
 Add the script file in the ```<head>``` section.

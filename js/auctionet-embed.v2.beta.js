@@ -47,7 +47,7 @@
         day: "dag",
         hours: "timmar",
         min: "minuter",
-        price: "Utropspris",
+        price: "Värdering",
         time: "Tid kvar",
         bids: "Bud",
         bid: "Bud",
