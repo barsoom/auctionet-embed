@@ -220,7 +220,18 @@
         headerTemplate = '<div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading || ""}}</h2>' + logoTemplate + '</div>';
       }
 
-      var template = '<div id="auctionet-wrapper">' + headerTemplate + '<ul id="external-items"></ul><div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{linkUrl}}" class="objects-btn all">{{text.seeAll}}</a></div></div></div>';
+      var itemsTemplate = '<ul id="external-items"></ul>';
+
+      var filtersTemplate = '<div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{linkUrl}}" class="objects-btn all">{{text.seeAll}}</a></div>';
+
+      var itemsAndFiltersTemplate;
+      if (this.settings.filtersBeforeItems) {
+        itemsAndFiltersTemplate = filtersTemplate + itemsTemplate;
+      } else {
+        itemsAndFiltersTemplate = itemsTemplate + filtersTemplate;
+      }
+
+      var template = '<div id="auctionet-wrapper">' + headerTemplate + itemsAndFiltersTemplate + '</div>';
       var compiledTemplate = Hogan.compile(template);
       return compiledTemplate;
     },

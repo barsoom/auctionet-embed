@@ -95,6 +95,12 @@ The starting filter.
 * 'ending' - Items ending soon.
 * 'recent' - Recently added items
 
+### filtersBeforeItems (optional)
+
+Should we show the filter links like "Latest bid" before the items, instead of after?
+
+Defaults to `false`.
+
 
 ### Fully configured
 
