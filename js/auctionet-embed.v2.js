@@ -216,7 +216,7 @@
       }
 
       var headerTemplate = "";
-      if (logoTemplate && this.settings.heading) {
+      if (logoTemplate || this.settings.heading) {
         headerTemplate = '<div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading}}</h2>' + logoTemplate + '</div>';
       }
 
