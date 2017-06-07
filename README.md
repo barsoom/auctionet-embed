@@ -121,6 +121,21 @@ The starting filter.
 </script>
 ```
 
+## Further styling
+
+Add CSS targeting the rendered embed HTML, e.g.:
+
+```
+<style type="text/css">
+  /* Style the embed widget */
+  #auctionet-header { display: none; }
+</style>
+```
+
+Keep this to a minimum, since we want the freedom to change the markup (though perhaps we should then also bump the version?).
+
+Try to use non-fragile CSS rules, i.e. avoiding nestled selectors, and using IDs or classes rather than relying on element names and nesting.
+
 ### Local development server
 
     bundle
