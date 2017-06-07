@@ -122,7 +122,7 @@
 
       this.settings = _.defaults(options, this.defaults);
       this.setLocale();
-      this.setHeading();
+      this.setDefaultHeading();
 
       var data = {
         textColors: this.settings.textColors,
@@ -146,7 +146,7 @@
       this.text = locales[this.settings.locale];
     },
 
-    setHeading : function() {
+    setDefaultHeading : function() {
       if (this.settings.heading === null) {
         this.settings.heading = this.text.heading;
       } else {
