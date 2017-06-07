@@ -3,6 +3,14 @@ div#auctionet-wrapper {
   font-family: "Open Sans", sans-serif;
 }
 
+#auctionet-wrapper * {
+  /* Don't break layout on a site that sets "* { box-sizing: border-box }" */
+  box-sizing: content-box;
+
+  /* Don't break layout on a site that sets a different line height. */
+  line-height: 1.4;
+}
+
 div#auctionet-wrapper #auctionet-header {
   overflow: hidden;
   padding: 0 1.5%;
