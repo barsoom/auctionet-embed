@@ -127,7 +127,7 @@
       var data = {
         textColors: this.settings.textColors,
         text: this.text,
-        heading: this.settings.heading,
+        heading: this.settings.heading || "",
         host: host,
         linkUrl: this.linkUrl()
       };
@@ -217,7 +217,7 @@
 
       var headerTemplate = "";
       if (logoTemplate && this.settings.heading) {
-        headerTemplate = '<div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading || ""}}</h2>' + logoTemplate + '</div>';
+        headerTemplate = '<div id="auctionet-header"><h2 style="color: {{textColors.heading}}">{{heading}}</h2>' + logoTemplate + '</div>';
       }
 
       var itemsTemplate = '<ul id="external-items"></ul>';
