@@ -48,7 +48,8 @@ Language code for translations.
 * 'sv' - Swedish
 
 ### heading (optional)
-The text heading for the widget
+
+Override the text heading for the widget. Defaults to a localized string like "Online auctions" (TODO: They're not all online auctions, so we should change this).
 
 ### backgroundColors (optional)
 These options are passed a JSON object :
@@ -77,6 +78,10 @@ textColors: {
   endsAtValue: '#5d5d5d'
 }
 ```
+
+### showLogo (optional)
+
+Whether to show the Auctionet logo. Default is `true`.
 
 ### howManyItems (optional)
 How many items should be displayed? Incremented in steps 5, 10, 15 and so on.
