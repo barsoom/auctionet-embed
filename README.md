@@ -51,8 +51,10 @@ Language code for translations.
 
 Override the text heading for the widget. Defaults to a localized string like "Online auctions" (TODO: They're not all online auctions, so we should change this).
 
+Set to `false` to not have a heading.
+
 ### backgroundColors (optional)
-These options are passed a JSON object :
+These options are passed a JSON object:
 
 ```
 backgroundColors: {
