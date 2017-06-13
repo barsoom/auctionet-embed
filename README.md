@@ -142,7 +142,7 @@ Add CSS targeting the rendered embed HTML, e.g.:
 
 Keep this to a minimum, since we want the freedom to change the markup (though perhaps we should then also bump the version?).
 
-Try to use non-fragile CSS rules, i.e. avoiding nestled selectors, and using IDs or classes rather than relying on element names and nesting.
+Try to use non-fragile CSS rules, i.e. avoiding nested selectors, and using IDs or classes rather than relying on element names and nesting.
 
 ### Local development server
 
