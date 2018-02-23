@@ -97,7 +97,7 @@
           nope: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js'
         }, {
           test: window.Hogan,
-          nope: 'https://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.min.js',
+          nope: 'https://cdnjs.cloudflare.com/ajax/libs/hogan.js/2.0.0/hogan.min.js',
           complete: function () {
             jQuery(function() {
               scriptTag = jQuery("#auctionet-embed-script");
