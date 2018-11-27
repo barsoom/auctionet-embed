@@ -71,24 +71,24 @@
         mostBids: "Störst antal bud"
       },
       es: {
-        days: "",
-        day: "",
-        hours: "",
-        min: "",
-        price: "",
-        timeLeft: "",
-        endedOn: "",
-        bids: "",
-        bid: "",
-        noObjectsFound: "",
-        heading: "",
-        popularItems: "",
-        lastestItems: "",
-        endingSoon: "",
-        seeAll: "",
-        hammeredLatest: "",
-        hammeredSoonest: "",
-        mostBids: ""
+        days: "days",
+        day: "day",
+        hours: "hours",
+        min: "min",
+        price: "Estimate",
+        timeLeft: "Time left",
+        endedOn: "Hammered",
+        bids: "Bids",
+        bid: "Bid",
+        noObjectsFound: "No items were found",
+        heading: "Online auctions",
+        popularItems: "Recently bid on",
+        lastestItems: "Recently added",
+        endingSoon: "Ending soon",
+        seeAll: "See all",
+        hammeredLatest: "Hammered latest",
+        hammeredSoonest: "Hammered soonest",
+        mostBids: "Most bids"
       }
     };
     return window.auctionet = {
