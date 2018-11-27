@@ -25,7 +25,7 @@ class Test
   def run
     setup
 
-    visit "http://localhost:#{WEB_SERVER_PORT}/index.html"
+    visit "http://localhost:#{WEB_SERVER_PORT}/index.v3.html"
 
     if page.has_css?("a.object-link")
       puts "Success. The page loaded and displayed items from the API."
