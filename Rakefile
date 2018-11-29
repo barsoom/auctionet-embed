@@ -1,6 +1,6 @@
 require "capybara"
 require "capybara/dsl"
-require "capybara/poltergeist"
+require "capybara/webkit"
 require "rack"
 
 task :default do
@@ -41,17 +41,11 @@ class Test
   private
 
   def setup
-    Capybara.javascript_driver = :poltergeist
-    Capybara.current_driver = Capybara.javascript_driver
-
-    Capybara.register_driver :poltergeist do |app|
-      options = {
-        :timeout => 60,
-        :debug => false,
-        :phantomjs_options => ['--disk-cache=false'],
-      }
-      Capybara::Poltergeist::Driver.new(app, options)
+    Capybara.javascript_driver = :webkit
+    Capybara::Webkit.configure do |config|
+      config.allow_unknown_urls
     end
+    Capybara.current_driver = Capybara.javascript_driver
   end
 end
 

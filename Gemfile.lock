@@ -11,6 +11,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    capybara-webkit (1.15.1)
+      capybara (>= 2.3, < 4.0)
+      json
     cliver (0.3.2)
     coderay (1.1.2)
     ffi (1.9.25)
@@ -30,6 +33,7 @@ GEM
     guard-shell (0.7.1)
       guard (>= 2.0.0)
       guard-compat (~> 1.0)
+    json (2.1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -74,6 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  capybara-webkit
   foreman
   guard
   guard-shell

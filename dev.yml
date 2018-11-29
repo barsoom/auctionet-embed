@@ -1,3 +1,5 @@
 dependencies:
   node: "0.10.30"
-  phantomjs: "1.9.8"
+  qt:
+    version: "5.11.2"
+    checksum: "152a8ade9c11fe33ff5bc95310a1bb64"

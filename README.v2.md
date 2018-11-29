@@ -152,6 +152,7 @@ Then visit [http://localhost:9292/index.html](http://localhost:9292/index.html).
 ### Running smoke tests
 
 You can run a raketask that checks if the page can be shown including items from the API.
+Testing requires Qt to be able to copile capybara webkit. You can find notes on how to install that [here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
     bundle
-    rake
+    xvfb-run -a bundle exec rake test

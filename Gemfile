@@ -13,4 +13,5 @@ group :development do
   gem "guard"
   gem "guard-shell"
   gem "rb-fsevent"
+  gem "capybara-webkit"
 end
