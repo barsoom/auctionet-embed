@@ -88,7 +88,7 @@
         seeAll: "Ver todos",
         hammeredLatest: "Subastados recientemente",
         hammeredSoonest: "Subastados primeramente",
-        mostBids: "mayor número de pujas"
+        mostBids: "Mayor número de pujas"
       }
     };
     return window.auctionet = {
