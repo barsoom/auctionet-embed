@@ -25,7 +25,7 @@ do (window) ->
       noObjectsFound: "No items were found"
       heading: "Online auctions"
       popularItems: "Recently bid on"
-      lastestItems: "Recently added"
+      latestItems: "Recently added"
       endingSoon: "Ending soon"
       seeAll: "See all"
     de:
@@ -40,7 +40,7 @@ do (window) ->
       noObjectsFound: "Keine Artikel wurde gefunden"
       heading: "Online-Auktionen"
       popularItems: "Beliebte Artikel"
-      lastestItems: "Neueste Artikel"
+      latestItems: "Neueste Artikel"
       endingSoon: "Bald endende Auktionen"
       seeAll: "Alle ansehen"
     sv:
@@ -55,7 +55,7 @@ do (window) ->
       noObjectsFound: "Inga föremål hittades"
       heading: "Nätauktioner"
       popularItems: "Senaste bud"
-      lastestItems: "Senast inkommet"
+      latestItems: "Senast inkommet"
       endingSoon: "Slutar snart"
       seeAll: "Se alla"
 
@@ -186,7 +186,7 @@ do (window) ->
       if @settings.showLogo
         logoTemplate = "<a href='{{linkUrl}}'><img src='{{host}}/img/logo.png' width='300' height='42' /></a>"
 
-      template = "<div id='auctionet-wrapper'><div id='auctionet-header'><h2 style='color: {{textColors.heading}}'>{{heading}}</h2>" + logoTemplate + "</div><ul id='external-items'></ul><div id='auctionet-buttons'><a href='javascript: `void(0)`' rel='bid_on' class='objects-btn active'>{{text.popularItems}}</a><a href='javascript: `void(0)`' rel='recent' class='objects-btn'>{{text.lastestItems}}</a><a href='javascript: `void(0)`' rel='ending' class='objects-btn'>{{text.endingSoon}}</a><span class='button-divider'> | </span><a href='{{linkUrl}}' class='objects-btn all'>{{text.seeAll}}</a></div></div></div>"
+      template = "<div id='auctionet-wrapper'><div id='auctionet-header'><h2 style='color: {{textColors.heading}}'>{{heading}}</h2>" + logoTemplate + "</div><ul id='external-items'></ul><div id='auctionet-buttons'><a href='javascript: `void(0)`' rel='bid_on' class='objects-btn active'>{{text.popularItems}}</a><a href='javascript: `void(0)`' rel='recent' class='objects-btn'>{{text.latestItems}}</a><a href='javascript: `void(0)`' rel='ending' class='objects-btn'>{{text.endingSoon}}</a><span class='button-divider'> | </span><a href='{{linkUrl}}' class='objects-btn all'>{{text.seeAll}}</a></div></div></div>"
       compiledTemplate = Hogan.compile(template)
       compiledTemplate
 

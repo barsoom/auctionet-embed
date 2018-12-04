@@ -24,7 +24,7 @@
       noObjectsFound: 'No items were found',
       heading: 'Online auctions',
       popularItems: 'Recently bid on',
-      lastestItems: 'Recently added',
+      latestItems: 'Recently added',
       endingSoon: 'Ending soon',
       seeAll: 'See all'
     },
@@ -40,7 +40,7 @@
       noObjectsFound: 'Keine Artikel wurde gefunden',
       heading: 'Online-Auktionen',
       popularItems: 'Beliebte Artikel',
-      lastestItems: 'Neueste Artikel',
+      latestItems: 'Neueste Artikel',
       endingSoon: 'Bald endende Auktionen',
       seeAll: 'Alle ansehen'
     },
@@ -56,7 +56,7 @@
       noObjectsFound: 'Inga föremål hittades',
       heading: 'Nätauktioner',
       popularItems: 'Senaste bud',
-      lastestItems: 'Senast inkommet',
+      latestItems: 'Senast inkommet',
       endingSoon: 'Slutar snart',
       seeAll: 'Se alla'
     }
@@ -222,7 +222,7 @@
 
       var itemsTemplate = '<ul id="external-items"></ul>';
 
-      var filtersTemplate = '<div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.lastestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{linkUrl}}" class="objects-btn all">{{text.seeAll}}</a></div>';
+      var filtersTemplate = '<div id="auctionet-buttons"><a href="javascript:void(0)" rel="bid_on" class="objects-btn active">{{text.popularItems}}</a><a href="javascript:void(0)" rel="recent" class="objects-btn">{{text.latestItems}}</a><a href="javascript:void(0)" rel="ending" class="objects-btn">{{text.endingSoon}}</a><span class="button-divider"> | </span><a href="{{linkUrl}}" class="objects-btn all">{{text.seeAll}}</a></div>';
 
       var itemsAndFiltersTemplate;
       if (this.settings.filtersBeforeItems) {
