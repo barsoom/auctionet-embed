@@ -1,3 +1,6 @@
 dependencies:
   node: "0.10.30"
-  phantomjs: "1.9.8"
+docker_services:
+  selenium:
+    image: "selenium/standalone-chrome:3.14"
+    options: "--net='host'"

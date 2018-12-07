@@ -6,7 +6,7 @@ ruby "2.5.3"
 gem "rack"
 gem "rake"
 gem "capybara"
-gem "poltergeist"
+gem "selenium-webdriver"
 
 group :development do
   gem "foreman"

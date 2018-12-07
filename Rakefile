@@ -1,6 +1,6 @@
 require "capybara"
 require "capybara/dsl"
-require "capybara/poltergeist"
+require "selenium-webdriver"
 require "rack"
 
 task :default do
@@ -25,7 +25,7 @@ class Test
   def run
     setup
 
-    visit "http://localhost:#{WEB_SERVER_PORT}/index.v3.html"
+    visit "/index.v3.html"
 
     if page.has_css?("a.object-link")
       puts "Success. The page loaded and displayed items from the API."
@@ -41,17 +41,25 @@ class Test
   private
 
   def setup
-    Capybara.javascript_driver = :poltergeist
-    Capybara.current_driver = Capybara.javascript_driver
+    # Configure the Chrome driver capabilities & register
+    arguments = ['--no-default-browser-check', '--start-maximized']
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => arguments})
 
-    Capybara.register_driver :poltergeist do |app|
-      options = {
-        :timeout => 60,
-        :debug => false,
-        :phantomjs_options => ['--disk-cache=false'],
-      }
-      Capybara::Poltergeist::Driver.new(app, options)
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(
+        app,
+        browser: :remote,
+        url: "http://localhost:4444/wd/hub",
+        desired_capabilities: capabilities
+      )
+
     end
+
+    Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :selenium
+
+    Capybara.app_host = "http://localhost:12345"
+    Capybara.run_server = false
   end
 end
 
