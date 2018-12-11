@@ -35,7 +35,7 @@ You can run a raketask that checks if the page can be shown including items from
 
     rake test
 
-If you need to debug for some reason you can do that via VNC.
+If you need to debug for some reason you can do that via VNC. (NOTE: The password is: secret)
 
 Start you VNC viewer and use http://localhost:5900
 
