@@ -1,0 +1,31 @@
+version: "3.1"
+services:
+  test:
+    build: .
+    command: rake run_tests
+    environment:
+      # See Rakefile for Capybara & Selenium webdriver config
+      - SELENIUM_HOST=selenium
+      - SELENIUM_PORT=4444
+      - TEST_APP_HOST=webserver
+      - TEST_APP_PORT=12345
+    depends_on:
+      - webserver
+      - selenium
+    volumes:
+      - .:/app  # Map /app files back to host drive, and visa versa
+
+  webserver:
+    build: .
+    command: bash -c "rackup -p 12345 -o webserver"
+    ports: [ "12345:12345" ]  # Bind service ports to host machine.
+    volumes:
+      - .:/app  # Map /app files back to host drive, and visa versa
+
+  selenium:
+    image: selenium/standalone-chrome-debug:3.14  # Debug version enables VNC ability
+    ports: [ "4444:4444", "5900:5900" ]  # Bind selenium port & VNC port
+    logging:
+      driver: none  # Disable noisy logs.
+    stdin_open: true
+    tty: true

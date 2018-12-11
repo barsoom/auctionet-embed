@@ -7,17 +7,29 @@ task :default do
   if ENV["DEVBOX"]
     system "foreman start --procfile=Procfile.dev"
   else
-    WebServer.new.run
-    Test.new.run
+    Rake::Task["test"].execute
   end
 end
 
-task :test do
-  WebServer.new.run
+task :run_tests do
   Test.new.run
 end
 
-WEB_SERVER_PORT = 12345
+desc "Build docker images"
+task :build do
+  system "docker-compose -p auctionet-embed build test"
+end
+
+desc "Run embed smoke test"
+task :test do
+  system "docker-compose -p auctionet-embed run test"
+end
+
+desc "How to debug failing smoke test"
+task :debug do
+  host = ENV["DEVBOX"] ? "192.168.50.51" : "localhost"
+  puts "Please use VNC via #{host}:5900 and run the tests again with: rake test"
+end
 
 class Test
   include Capybara::DSL
@@ -49,7 +61,7 @@ class Test
       Capybara::Selenium::Driver.new(
         app,
         browser: :remote,
-        url: "http://localhost:4444/wd/hub",
+        url: "http://#{ENV.fetch("SELENIUM_HOST")}:#{ENV.fetch("SELENIUM_PORT")}/wd/hub",
         desired_capabilities: capabilities
       )
 
@@ -58,54 +70,7 @@ class Test
     Capybara.current_driver = :selenium
     Capybara.javascript_driver = :selenium
 
-    Capybara.app_host = "http://localhost:12345"
+    Capybara.app_host = "http://#{ENV.fetch("TEST_APP_HOST")}:#{ENV.fetch("TEST_APP_PORT")}"
     Capybara.run_server = false
-  end
-end
-
-class WebServer
-  TIMEOUT = 5
-
-  def run
-    wait_for_rack_server_to_be_ready do
-      start_rack_server_in_background
-    end
-  end
-
-  private
-
-  def start_rack_server_in_background
-    Thread.new do
-      Rack::Server.start app: Rack::Directory.new(Dir.pwd), Port: WEB_SERVER_PORT
-    end
-  end
-
-  def wait_for_rack_server_to_be_ready
-    wait_for_output_on_stderr(output: WEB_SERVER_PORT.to_s) do
-      yield
-    end
-  end
-
-  def wait_for_output_on_stderr(output:)
-    old = $stdout
-    $stderr = StringIO.new
-
-    yield
-
-    t = Time.now
-
-    loop do
-      $stderr.rewind
-      content = $stderr.read
-      break if content.include?(output)
-
-      sleep 0.05
-
-      if Time.now - t > TIMEOUT
-        raise %{Did not find #{output} in "#{content}" within #{TIMEOUT} seconds}
-      end
-    end
-
-    $stderr = old
   end
 end

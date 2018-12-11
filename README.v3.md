@@ -134,23 +134,6 @@ With ended: true:
 </script>
 ```
 
-### Local development server
-
-    bundle
-    rackup
-
-    # or if you want to bind it to a specific ip
-    rackup --host 192.168.50.51
-
-Then visit [http://localhost:9292/index.html](http://localhost:9292/index.html).
-
-### Running smoke tests
-
-You can run a raketask that checks if the page can be shown including items from the API.
-
-    bundle
-    rake test
-
 ### Auto compiling coffeescript to javascript
 
 Run rake and when you edit and save a coffeescript file it will automatically convert it to javascript and put it into the js/ directory.

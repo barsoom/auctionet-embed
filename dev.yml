@@ -1,6 +1,2 @@
 dependencies:
   node: "0.10.30"
-docker_services:
-  selenium:
-    image: "selenium/standalone-chrome:3.14"
-    options: "--net='host'"
