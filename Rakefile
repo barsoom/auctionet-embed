@@ -22,13 +22,24 @@ end
 
 desc "Run embed smoke test"
 task :test do
+  is_running = system("docker ps -q --no-trunc | grep $(docker-compose ps -q selenium) > /dev/null 2>&1")
+
+  unless is_running
+    system "docker-compose -p auctionet-embed up -d"
+  end
+
   system "docker-compose -p auctionet-embed run test"
 end
 
 desc "How to debug failing smoke test"
 task :debug do
   host = ENV["DEVBOX"] ? "192.168.50.51" : "localhost"
-  puts "Please use VNC via #{host}:5900 and run the tests again with: rake test"
+  puts "Please start VNC via #{host}:5900 and then run: rake test"
+end
+
+desc "Stops containers and removes containers, networks, volumes, and images created by up"
+task :stop do
+  system "docker-compose down"
 end
 
 class Test
