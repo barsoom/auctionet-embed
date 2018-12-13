@@ -39,7 +39,7 @@ end
 
 desc "Stops containers and removes containers, networks, volumes, and images created by up"
 task :stop do
-  system "docker-compose down"
+  system "docker-compose down -p auctionet-embed"
 end
 
 class Test
