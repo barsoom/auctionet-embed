@@ -28,6 +28,18 @@ task :test do
     system "docker-compose -p auctionet-embed up --build -d"
   end
 
+  counter = 0
+  loop do
+    if `curl -s http://localhost:4444/wd/hub/status`.include?("Server is running")  # Break when service is up and running.
+      break
+    elsif counter == 300  # Exit after 0.1 * 300 = 30 seconds if the service isn't up and running.
+      exit 1
+    else
+      counter += 1
+      sleep 0.1
+    end
+  end
+
   system "docker-compose -p auctionet-embed run test"
 end
 
