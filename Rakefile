@@ -32,7 +32,7 @@ task :test do
   loop do
     if `curl -s http://localhost:4444/wd/hub/status`.include?("Server is running")  # Break when service is up and running.
       break
-    elsif counter == 300  # Exit after 0.1 * 300 = 30 seconds if the service isn't up and running.
+    elsif counter == 600  # Exit after 0.1 * 600 = 60 seconds if the service isn't up and running.
       exit 1
     else
       counter += 1
