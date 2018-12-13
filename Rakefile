@@ -25,7 +25,7 @@ task :test do
   is_running = system("docker ps -q --no-trunc | grep $(docker-compose ps -q selenium) > /dev/null 2>&1")
 
   unless is_running
-    system "docker-compose -p auctionet-embed up -d"
+    system "docker-compose -p auctionet-embed up --build -d"
   end
 
   system "docker-compose -p auctionet-embed run test"
