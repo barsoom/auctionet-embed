@@ -5,6 +5,7 @@ RUN apk update \
         build-base \
         gcc \
     && apk add \
+        curl \
         bash
 
 WORKDIR /
