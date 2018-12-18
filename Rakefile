@@ -77,7 +77,7 @@ class Test
 
   def setup
     # Configure the Chrome driver capabilities & register
-    arguments = ['--no-default-browser-check', '--start-maximized']
+    arguments = [ "--no-default-browser-check", "--start-maximized" ]
     capabilities = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => arguments})
 
     Capybara.register_driver :selenium do |app|
