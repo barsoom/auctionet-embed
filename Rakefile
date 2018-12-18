@@ -28,14 +28,14 @@ task :test do
     system "docker-compose --project-name auctionet-embed up --build --detach"
   end
 
-  counter = 0
+  elapsed_seconds = 0
   loop do
     if `docker-compose --project-name auctionet-embed exec webserver curl '--silent' 'http://selenium:4444/wd/hub/status'`.include?("Server is running")  # Break when service is up and running.
       break
-    elsif counter == 100  # Exit after 0.1 * 100 = 10 seconds if the service isn't up and running.
+    elsif elapsed_seconds > 10
       exit 1
     else
-      counter += 1
+      elapsed_seconds += 0.1
       sleep 0.1
     end
   end
