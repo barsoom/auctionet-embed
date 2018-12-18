@@ -17,20 +17,20 @@ end
 
 desc "Build docker images"
 task :build do
-  system "docker-compose -p auctionet-embed build test"
+  system "docker-compose --project-name auctionet-embed build test"
 end
 
 desc "Run embed smoke test"
 task :test do
-  is_running = system("docker ps -q --no-trunc | grep $(docker-compose ps -q selenium) > /dev/null 2>&1")
+  is_running = system("docker ps --quiet --no-trunc | grep $(docker-compose ps --quiet selenium) > /dev/null 2>&1")
 
   unless is_running
-    system "docker-compose -p auctionet-embed up --build -d"
+    system "docker-compose --project-name auctionet-embed up --build --detach"
   end
 
   counter = 0
   loop do
-    if `docker-compose -p auctionet-embed exec webserver curl '-s' 'http://selenium:4444/wd/hub/status'`.include?("Server is running")  # Break when service is up and running.
+    if `docker-compose --project-name auctionet-embed exec webserver curl '--silent' 'http://selenium:4444/wd/hub/status'`.include?("Server is running")  # Break when service is up and running.
       break
     elsif counter == 100  # Exit after 0.1 * 100 = 10 seconds if the service isn't up and running.
       exit 1
@@ -40,7 +40,7 @@ task :test do
     end
   end
 
-  system "docker-compose -p auctionet-embed run test"
+  system "docker-compose --project-name auctionet-embed run test"
 end
 
 desc "How to debug failing smoke test"
@@ -51,7 +51,7 @@ end
 
 desc "Stops containers and removes containers, networks, volumes, and images created by up"
 task :stop do
-  system "docker-compose -p auctionet-embed down"
+  system "docker-compose --project-name auctionet-embed down"
 end
 
 class Test
