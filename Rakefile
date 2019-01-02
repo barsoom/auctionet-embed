@@ -22,9 +22,8 @@ end
 
 desc "Run embed smoke test"
 task :test do
-  is_running = system("docker ps --quiet --no-trunc | grep $(docker-compose ps --quiet selenium) > /dev/null 2>&1")
-
-  unless is_running
+  selenium_is_running = system("docker ps --quiet --no-trunc | grep $(docker-compose ps --quiet selenium) > /dev/null 2>&1")
+  unless selenium_is_running
     system "docker-compose --project-name auctionet-embed up --build --detach"
   end
 
