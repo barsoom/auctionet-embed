@@ -37,7 +37,7 @@ Customized search query
 Examples:
 
     query: "chair"          # One word query
-    query: "chair||table"  # Multi word query
+    query: "chair||table"   # Multi word query
 
 ### ended
 Show active items or ended items.
