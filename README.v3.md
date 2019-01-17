@@ -107,7 +107,7 @@ With ended: true:
 * "end_asc_archive" - The first hammered (ended) items.
 * "bids_count_desc" - Ended items with most bids.
 
-### showEuroWithSign (optional) (defalut false)
+### showEuroWithSign (optional) (default: false)
 Show amounts with a euro sign (€) before the amount.
 
 Example: €300
