@@ -99,6 +99,7 @@ do (window) ->
       ended: false
       heading: null
       showLogo: true
+      showEuroWithSign: false
       backgroundColors:
         image: "#ececec"
         meta: "#ececec"
@@ -243,10 +244,16 @@ do (window) ->
       if title.length > 36 then title.substring(0, 36) + "..." else title
 
     bidOrEstimateValue: (object) ->
-      if object.bids.length > 0
-        object.bids[0].amount + " " + object.currency
+      amount =
+        if object.bids.length > 0
+          object.bids[0].amount
+        else
+          object.estimate
+
+      if object.currency == "EUR" && @settings.showEuroWithSign
+        "€" + amount
       else
-        object.estimate + " " + object.currency
+        amount + " " + object.currency
 
     bidOrEstimateText: (object) ->
       bidAmount = object.bids.length

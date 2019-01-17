@@ -100,6 +100,7 @@
         ended: false,
         heading: null,
         showLogo: true,
+        showEuroWithSign: false,
         backgroundColors: {
           image: "#ececec",
           meta: "#ececec"
@@ -244,10 +245,12 @@
         }
       },
       bidOrEstimateValue: function(object) {
-        if (object.bids.length > 0) {
-          return object.bids[0].amount + " " + object.currency;
+        var amount;
+        amount = object.bids.length > 0 ? object.bids[0].amount : object.estimate;
+        if (object.currency === "EUR" && this.settings.showEuroWithSign) {
+          return "€" + amount;
         } else {
-          return object.estimate + " " + object.currency;
+          return amount + " " + object.currency;
         }
       },
       bidOrEstimateText: function(object) {
