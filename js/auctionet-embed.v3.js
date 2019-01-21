@@ -248,7 +248,7 @@
         var amount;
         amount = object.bids.length > 0 ? object.bids[0].amount : object.estimate;
         if (object.currency === "EUR" && this.settings.showEuroWithSign) {
-          return "€" + amount;
+          return amount + " €";
         } else {
           return amount + " " + object.currency;
         }
