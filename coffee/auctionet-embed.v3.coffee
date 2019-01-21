@@ -251,7 +251,7 @@ do (window) ->
           object.estimate
 
       if object.currency == "EUR" && @settings.showEuroWithSign
-        "€" + amount
+        amount + " €"
       else
         amount + " " + object.currency
 

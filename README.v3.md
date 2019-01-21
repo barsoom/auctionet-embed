@@ -108,9 +108,9 @@ With ended: true:
 * "bids_count_desc" - Ended items with most bids.
 
 ### showEuroWithSign (optional) (default: false)
-Show amounts with a euro sign (€) before the amount.
+Show amounts with a euro sign (€).
 
-Example: €300
+Example: 300 €
 
 Example default: 300 EUR
 
