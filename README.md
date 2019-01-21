@@ -40,3 +40,8 @@ If you need to debug for some reason you can do that via VNC. (NOTE: The passwor
 Start you VNC viewer and use http://localhost:5900
 
     rake debug
+
+#### Deploying to auctionet
+
+When you are feeling confident everything works, just copy the newly built js file(s) into auctionet (public/embed/js).
+Remember that you have rake running in order for it to pick up and build the js-file. So if the js-file is not up to date, just start rake and touch the file you want rebuilt.
