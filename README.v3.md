@@ -57,6 +57,7 @@ Language code for translations.
 * "de" - German
 * "en" - English
 * "sv" - Swedish
+* "es"" - Spanish
 
 ### heading (optional)
 The text heading for the widget
