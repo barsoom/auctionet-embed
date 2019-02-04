@@ -4,7 +4,9 @@
 
 Edit `coffee/auctionet-embed.v3.coffee` while running `bundle exec guard` to ensure it's converted to JS.
 
-Once you have a `.js` file, you need to copy it to Auctionet and deploy it through there.
+Once you have a `.js` file, you need to copy it to Auctionet and deploy it through there:
+
+    cp js/auctionet-embed.v3.js ~/auctionet/public/embed/js/auctionet-embed.v3.js
 
 ### Local development server
 
