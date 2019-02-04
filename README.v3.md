@@ -3,12 +3,29 @@
 ## Versions and releasing the code
 
 Edit `coffee/auctionet-embed.v3.coffee` while running `bundle exec guard` to ensure it's converted to JS.
-Once you have a `.js` file, you need to copy it to Auctionet and deploy it through there:
+
+Once you have a `.js` file, you need to copy it to Auctionet and deploy it through there.
+
+### Local development server
+
+    bundle
+
+    # If running within Devbox, you want to bind it to the right IP:
+    rackup --host 192.168.50.51
+
+Then visit <http://192.168.50.51:9292/index.v3.html>.
+
+(Without devbox, skip `--host` and find the page on `http://localhost:9292`.)
 
 ## Quick start
-Add the script file in the ```<head>``` section.
+Add the script file in the `<head>` section of the page.
+
+The script depends on jQuery (any version from 1.11.0 onwards), which you must load yourself.
+
+For example:
 
 ```
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script data-host="//auctionet.com/embed" src="//auctionet.com/embed/js/auctionet-embed.v3.js" id="auctionet-embed-script"></script>
 ```
 
@@ -29,10 +46,10 @@ Then add the embed code wherever you want the widget:
 ## Options
 
 ### companyId
-The Auctionet Company id.
+The numeric Auctionet company ID. Ask Auctionet support if you don't know this.
 
 ### query
-Customized search query
+Any search query.
 
 Examples:
 

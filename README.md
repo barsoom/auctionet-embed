@@ -15,7 +15,7 @@ Embeds a list of items from auctionet.com for a specific company. One place of m
     # or if you want to bind it to a specific ip
     rackup --host 192.168.50.51
 
-Then visit [http://localhost:9292/index.html](http://localhost:9292/index.html).
+Then visit <http://localhost:9292/index.html>.
 
 ### Smoke tests
 

@@ -123,9 +123,6 @@
         auctionet = this;
         return yepnope([
           {
-            test: window.jQuery,
-            nope: "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-          }, {
             test: window._,
             nope: "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"
           }, {

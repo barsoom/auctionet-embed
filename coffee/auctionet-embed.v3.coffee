@@ -118,12 +118,8 @@ do (window) ->
     init: (options) ->
       auctionet = this
 
-      # TODO: Implement DOM-ready to catch later loaded jQuery.
       yepnope [
-        {
-          test: window.jQuery
-          nope: "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-        },
+        # NOTE: Intentionally no jQuery here. Our instructions ask the embedding website to include it. We got version conflicts trying to include it via yepnope.
         {
           test: window._
           nope: "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"
@@ -134,12 +130,10 @@ do (window) ->
           complete: ->
             jQuery ->
               scriptTag = jQuery("#auctionet-embed-script")
-              # Make our embeded code work with previous versions of JQuery
-              #
-              # The .data() method was introduced in JQuery 1.4.3, read more about it:
-              # http://blog.jquery.com/2010/10/16/jquery-143-released/
-              host = scriptTag.attr("data-host")
+              host = scriptTag.attr("data-host")  # Not using data("host"), to support jQuery <1.4.3
+
               auctionet.embed options
+
               yepnope [ { load: [
                 host + "/css/auctionet-embed.v2.css"
                 "https://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600.css"
@@ -150,6 +144,7 @@ do (window) ->
     embed: (options) ->
       document = window.document
       @settings = _.defaults(options, @defaults)
+
       @setLocale()
       @setHeading()
       data =
